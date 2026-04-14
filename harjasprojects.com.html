@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HARJAS BUILDER & CONTRACTOR | Building Dreams Into Empires Since 1985</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap');
+        
+        :root {
+            --primary: #0A3D35;
+            --accent: #D4AF37;
+        }
+        
+        * { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        
+        .hero-bg {
+            background-image: linear-gradient(180deg, rgba(10, 61, 53, 0.85) 0%, rgba(10, 61, 53, 0.92) 100%),
+                              url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-bg { background-attachment: scroll; }
+        }
+        
+        .navbar { backdrop-filter: blur(16px); }
+        
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(to right, #D4AF37, #0A3D35);
+            border-radius: 9999px;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(10, 61, 53, 0.25);
+        }
+        
+        .whatsapp-float {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 700ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Mobile Improvements */
+        @media (max-width: 640px) {
+            h1 { font-size: 2.8rem; line-height: 1.05; }
+            .text-5xl { font-size: 2.5rem; }
+            .text-6xl { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body class="font-sans bg-white overflow-x-hidden">
+
+    <!-- NAVBAR -->
+    <nav class="navbar fixed top-0 left-0 right-0 z-50 bg-[#0A3D35]/95 border-b border-white/10">
+        <div class="max-w-screen-2xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-x-3">
+                <div class="w-9 h-9 bg-[#D4AF37] rounded-2xl flex items-center justify-center">
+                    <i class="fa-solid fa-trowel-bricks text-[#0A3D35] text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-3xl font-bold text-white tracking-[-1px]">HARJAS</h1>
+                    <p class="text-[#D4AF37] text-xs tracking-widest -mt-1">BUILDER & CONTRACTOR</p>
+                </div>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-x-8 text-white font-medium">
+                <a onclick="smoothScroll('about')" class="hover:text-[#D4AF37] cursor-pointer">ABOUT</a>
+                <a onclick="smoothScroll('expertise')" class="hover:text-[#D4AF37] cursor-pointer">EXPERTISE</a>
+                <a onclick="smoothScroll('projects')" class="hover:text-[#D4AF37] cursor-pointer">PROJECTS</a>
+                <a onclick="smoothScroll('why')" class="hover:text-[#D4AF37] cursor-pointer">WHY US</a>
+                <a onclick="smoothScroll('contact')" class="hover:text-[#D4AF37] cursor-pointer">CONTACT</a>
+            </div>
+
+            <div class="flex items-center gap-x-3">
+                <a href="tel:9814052129" class="hidden sm:flex items-center gap-x-2 bg-white/10 hover:bg-white/20 text-white px-5 h-10 rounded-3xl text-sm font-medium">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>98140 52129</span>
+                </a>
+                <button onclick="smoothScroll('contact')" 
+                        class="bg-[#D4AF37] hover:bg-amber-300 text-[#0A3D35] font-semibold px-6 h-10 rounded-3xl flex items-center gap-x-2">
+                    GET IN TOUCH
+                </button>
+                <button onclick="toggleMobileMenu()" class="md:hidden text-white text-3xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-[#0A3D35] border-t border-white/10 px-6 py-6">
+            <div class="flex flex-col gap-y-5 text-white text-lg font-medium">
+                <a onclick="toggleMobileMenu();smoothScroll('about')" class="py-3">About</a>
+                <a onclick="toggleMobileMenu();smoothScroll('expertise')" class="py-3">Expertise</a>
+                <a onclick="toggleMobileMenu();smoothScroll('projects')" class="py-3">Projects</a>
+                <a onclick="toggleMobileMenu();smoothScroll('why')" class="py-3">Why Us</a>
+                <a onclick="toggleMobileMenu();smoothScroll('contact')" class="py-3">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header id="hero" class="hero-bg min-h-screen flex items-center relative pt-16">
+        <div class="max-w-screen-2xl mx-auto px-5 md:px-16 text-white">
+            <div class="max-w-2xl">
+                <div class="inline-flex items-center gap-x-2 bg-white/10 backdrop-blur-md px-5 h-9 rounded-3xl mb-6 text-sm font-medium">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4AF37]"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-[#D4AF37]"></span>
+                    </span>
+                    SINCE 1985 • PAN INDIA
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-[-2px] mb-6" style="font-family: 'Playfair Display', sans-serif;">
+                    Building Dreams Into Empires
+                </h1>
+                <p class="text-xl md:text-3xl text-white/90 mb-10">Since 1985 | Pan India | Large Scale Projects</p>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="smoothScroll('projects')" 
+                            class="bg-white text-[#0A3D35] font-semibold px-8 py-5 md:py-6 rounded-3xl flex items-center justify-center gap-x-3 text-base md:text-lg shadow-xl">
+                        <i class="fa-solid fa-diagram-project"></i> VIEW PROJECTS
+                    </button>
+                    <button onclick="smoothScroll('contact')" 
+                            class="border-2 border-white hover:bg-white hover:text-[#0A3D35] font-semibold px-8 py-5 md:py-6 rounded-3xl text-base md:text-lg">
+                        CONTACT US
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-20 md:py-28 bg-white">
+        <div class="max-w-screen-2xl mx-auto px-5 md:px-16">
+            <div class="grid md:grid-cols-12 gap-12 items-center">
+                <div class="md:col-span-7 fade-in">
+                    <div class="inline-flex bg-[#0A3D35] text-white px-6 h-9 rounded-3xl items-center text-sm font-medium mb-6">OUR LEGACY</div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-[#0A3D35] leading-tight section-header" style="font-family: 'Playfair Display', sans-serif;">
+                        Crafting Timeless Excellence Since 1985
+                    </h2>
+                    <p class="mt-6 text-lg text-gray-600">For over four decades, we have delivered landmark construction projects across India with uncompromising quality and integrity.</p>
+                </div>
+                <div class="md:col-span-5 grid grid-cols-3 gap-4 fade-in">
+                    <div class="text-center rounded-3xl p-6 shadow-lg border">
+                        <div id="years" class="text-5xl md:text-6xl font-bold text-[#0A3D35]">41</div>
+                        <div class="text-xs uppercase tracking-widest text-gray-500 mt-1">Years</div>
+                    </div>
+                    <div class="text-center rounded-3xl p-6 shadow-lg border">
+                        <div id="cities" class="text-5xl md:text-6xl font-bold text-[#0A3D35]">25+</div>
+                        <div class="text-xs uppercase tracking-widest text-gray-500 mt-1">Cities</div>
+                    </div>
+                    <div class="text-center rounded-3xl p-6 shadow-lg border">
+                        <div id="projects" class="text-5xl md:text-6xl font-bold text-[#0A3D35]">450+</div>
+                        <div class="text-xs uppercase tracking-widest text-gray-500 mt-1">Projects</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERTISE -->
+    <section id="expertise" class="py-20 md:py-28 bg-[#0A3D35] text-white">
+        <div class="max-w-screen-2xl mx-auto px-5 md:px-16">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold text-white section-header" style="font-family: 'Playfair Display', sans-serif;">Our Expertise</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="card-hover bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 hover:border-[#D4AF37]">
+                    <div class="w-14 h-14 bg-[#D4AF37] text-[#0A3D35] rounded-2xl flex items-center justify-center mb-6 text-4xl"><i class="fa-solid fa-building"></i></div>
+                    <h3 class="text-2xl font-semibold mb-3">Commercial Construction</h3>
+                    <p class="text-white/80">Iconic offices, malls & corporate landmarks</p>
+                </div>
+                <div class="card-hover bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 hover:border-[#D4AF37]">
+                    <div class="w-14 h-14 bg-[#D4AF37] text-[#0A3D35] rounded-2xl flex items-center justify-center mb-6 text-4xl"><i class="fa-solid fa-home"></i></div>
+                    <h3 class="text-2xl font-semibold mb-3">Residential Projects</h3>
+                    <p class="text-white/80">Luxury homes & premium communities</p>
+                </div>
+                <div class="card-hover bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 hover:border-[#D4AF37]">
+                    <div class="w-14 h-14 bg-[#D4AF37] text-[#0A3D35] rounded-2xl flex items-center justify-center mb-6 text-4xl"><i class="fa-solid fa-road"></i></div>
+                    <h3 class="text-2xl font-semibold mb-3">Large Infrastructure</h3>
+                    <p class="text-white/80">Major projects shaping India’s growth</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="py-20 md:py-28 bg-white">
+        <div class="max-w-screen-2xl mx-auto px-5 md:px-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-[#0A3D35] mb-3 section-header text-center md:text-left" style="font-family: 'Playfair Display', sans-serif;">
+                Our Major Projects Across India
+            </h2>
+            <p class="text-gray-500 text-center md:text-left mb-10">Large Scale Commercial & Residential Developments</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <div class="card-hover bg-gradient-to-br from-[#0A3D35] to-[#0F2C28] text-white rounded-3xl p-6 md:p-8">
+                    <i class="fa-solid fa-map-pin text-[#D4AF37] text-4xl mb-4"></i>
+                    <h4 class="text-xl md:text-2xl font-bold">Ghaziabad</h4>
+                    <p class="text-white/70 text-sm">NCR</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-[#0A3D35] to-[#0F2C28] text-white rounded-3xl p-6 md:p-8">
+                    <i class="fa-solid fa-map-pin text-[#D4AF37] text-4xl mb-4"></i>
+                    <h4 class="text-xl md:text-2xl font-bold">Ahmedabad</h4>
+                    <p class="text-white/70 text-sm">Gujarat</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-[#0A3D35] to-[#0F2C28] text-white rounded-3xl p-6 md:p-8">
+                    <i class="fa-solid fa-map-pin text-[#D4AF37] text-4xl mb-4"></i>
+                    <h4 class="text-xl md:text-2xl font-bold">Mumbai</h4>
+                    <p class="text-white/70 text-sm">Maharashtra</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-[#0A3D35] to-[#0F2C28] text-white rounded-3xl p-6 md:p-8">
+                    <i class="fa-solid fa-map-pin text-[#D4AF37] text-4xl mb-4"></i>
+                    <h4 class="text-xl md:text-2xl font-bold">Amritsar</h4>
+                    <p class="text-white/70 text-sm">Punjab</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-[#0A3D35] to-[#0F2C28] text-white rounded-3xl p-6 md:p-8">
+                    <i class="fa-solid fa-map-pin text-[#D4AF37] text-4xl mb-4"></i>
+                    <h4 class="text-xl md:text-2xl font-bold">Jammu</h4>
+                    <p class="text-white/70 text-sm">J&amp;K</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-[#0A3D35] to-[#0F2C28] text-white rounded-3xl p-6 md:p-8">
+                    <i class="fa-solid fa-map-pin text-[#D4AF37] text-4xl mb-4"></i>
+                    <h4 class="text-xl md:text-2xl font-bold">Chandigarh</h4>
+                    <p class="text-white/70 text-sm">Tricity</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-[#0A3D35] to-[#0F2C28] text-white rounded-3xl p-6 md:p-8">
+                    <i class="fa-solid fa-map-pin text-[#D4AF37] text-4xl mb-4"></i>
+                    <h4 class="text-xl md:text-2xl font-bold">Adampur</h4>
+                    <p class="text-white/70 text-sm">Punjab</p>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-[#0A3D35] to-[#0F2C28] text-white rounded-3xl p-6 md:p-8">
+                    <i class="fa-solid fa-map-pin text-[#D4AF37] text-4xl mb-4"></i>
+                    <h4 class="text-xl md:text-2xl font-bold">Jalandhar</h4>
+                    <p class="text-white/70 text-sm">Punjab</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section id="why" class="py-20 md:py-28 bg-gradient-to-br from-[#0A3D35] to-[#0F2C28] text-white">
+        <div class="max-w-screen-2xl mx-auto px-5 md:px-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-white section-header" style="font-family: 'Playfair Display', sans-serif;">Why Choose Harjas</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-5xl mb-4">🏆</div>
+                    <h4 class="font-semibold text-xl">41 Years</h4>
+                    <p class="text-white/70 text-sm">Experience</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl mb-4">🇮🇳</div>
+                    <h4 class="font-semibold text-xl">Pan India</h4>
+                    <p class="text-white/70 text-sm">Presence</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl mb-4">🤝</div>
+                    <h4 class="font-semibold text-xl">Trusted</h4>
+                    <p class="text-white/70 text-sm">By Clients</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl mb-4">⭐</div>
+                    <h4 class="font-semibold text-xl">Premium Quality</h4>
+                    <p class="text-white/70 text-sm">Craftsmanship</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 md:py-20 bg-gradient-to-r from-[#D4AF37] to-amber-400">
+        <div class="max-w-screen-2xl mx-auto px-5 md:px-16 text-center">
+            <h2 class="text-[#0A3D35] text-4xl md:text-6xl font-bold leading-tight mb-6" style="font-family: 'Playfair Display', sans-serif;">
+                Ready to Build Your Dream Project?
+            </h2>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="tel:9814052129" class="bg-[#0A3D35] text-white py-6 px-10 rounded-3xl font-semibold text-lg flex items-center justify-center gap-x-3">
+                    <i class="fa-solid fa-phone"></i> CALL NOW
+                </a>
+                <a href="https://wa.me/8677000029" target="_blank" class="border-2 border-[#0A3D35] text-[#0A3D35] hover:bg-[#0A3D35] hover:text-white py-6 px-10 rounded-3xl font-semibold text-lg flex items-center justify-center gap-x-3">
+                    <i class="fa-brands fa-whatsapp text-3xl"></i> WHATSAPP
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT FORM -->
+    <section id="contact" class="py-20 md:py-28 bg-white">
+        <div class="max-w-screen-2xl mx-auto px-5 md:px-16">
+            <div class="grid md:grid-cols-12 gap-12">
+                <div class="md:col-span-5">
+                    <h2 class="text-4xl md:text-5xl font-bold text-[#0A3D35] mb-8 section-header" style="font-family: 'Playfair Display', sans-serif;">Get In Touch</h2>
+                    <div class="space-y-10">
+                        <div>
+                            <p class="font-semibold text-2xl mb-2">📞 Call Us</p>
+                            <a href="tel:9814052129" class="block text-3xl font-medium text-[#0A3D35]">98140 52129</a>
+                            <a href="tel:9814692345" class="block text-3xl font-medium text-[#0A3D35]">98146 92345</a>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-2xl mb-2">💬 WhatsApp</p>
+                            <a href="https://wa.me/8677000029" target="_blank" class="block text-3xl font-medium text-[#0A3D35]">86770 00029</a>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-2xl mb-2">📸 Instagram</p>
+                            <a href="https://www.instagram.com/harjas.group.29" target="_blank" class="block text-3xl font-medium text-[#0A3D35]">@harjas.group.29</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-7 bg-white border border-gray-100 rounded-3xl p-8 md:p-12 shadow-2xl">
+                    <h3 class="text-2xl font-semibold mb-8 text-[#0A3D35]">Send Your Project Enquiry</h3>
+                    <form id="enquiryForm" onsubmit="sendToWhatsApp(event)">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <input type="text" id="name" placeholder="Full Name *" required class="w-full border border-gray-200 focus:border-[#D4AF37] rounded-3xl px-6 py-5 outline-none">
+                            <input type="tel" id="phone" placeholder="Phone Number *" required class="w-full border border-gray-200 focus:border-[#D4AF37] rounded-3xl px-6 py-5 outline-none">
+                        </div>
+                        <input type="email" id="email" placeholder="Email Address" class="mt-6 w-full border border-gray-200 focus:border-[#D4AF37] rounded-3xl px-6 py-5 outline-none">
+                        <textarea id="message" rows="5" placeholder="Tell us about your project (type, location, size, timeline etc.) *" required class="mt-6 w-full border border-gray-200 focus:border-[#D4AF37] rounded-3xl px-6 py-5 outline-none"></textarea>
+                        
+                        <button type="submit" class="mt-8 w-full bg-[#0A3D35] hover:bg-black text-white font-semibold py-7 rounded-3xl text-xl flex items-center justify-center gap-x-3">
+                            <i class="fa-brands fa-whatsapp text-2xl"></i> SEND VIA WHATSAPP
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#0A3D35] text-white/70 py-12">
+        <div class="max-w-screen-2xl mx-auto px-5 md:px-16 text-center">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-x-3">
+                    <div class="w-10 h-10 bg-[#D4AF37] rounded-2xl flex items-center justify-center">
+                        <i class="fa-solid fa-trowel-bricks text-[#0A3D35]"></i>
+                    </div>
+                    <span class="text-3xl font-bold text-white">HARJAS</span>
+                </div>
+                <p class="text-sm">© 1985 - 2026 HARJAS BUILDER & CONTRACTOR • Ludhiana, Punjab • Pan India</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/8677000029" target="_blank" 
+       class="whatsapp-float fixed bottom-6 right-6 bg-[#25D366] w-16 h-16 rounded-3xl flex items-center justify-center text-white text-4xl shadow-2xl z-50">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function smoothScroll(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+
+        function sendToWhatsApp(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !phone || !message) {
+                alert("Please fill Name, Phone and Project details");
+                return;
+            }
+
+            const text = `🛠️ *New Project Enquiry from Website*\n\n` +
+                `*Name:* ${name}\n` +
+                `*Phone:* ${phone}\n` +
+                `*Email:* ${email || 'Not provided'}\n\n` +
+                `*Project Details:*\n${message}\n\n` +
+                `---\nSent from HARJAS BUILDER & CONTRACTOR Website`;
+
+            const encoded = encodeURIComponent(text);
+            window.open(`https://wa.me/8677000029?text=${encoded}`, '_blank');
+
+            setTimeout(() => {
+                alert("✅ Enquiry ready! WhatsApp opened.\nPlease click Send.");
+            }, 600);
+        }
+
+        function animateCounters() {
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        document.getElementById('years').textContent = '41';
+                        document.getElementById('cities').textContent = '25+';
+                        document.getElementById('projects').textContent = '450+';
+                    }
+                });
+            }, { threshold: 0.6 });
+            obs.observe(document.getElementById('about'));
+        }
+
+        function fadeInOnScroll() {
+            const elements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.15 });
+            elements.forEach(el => observer.observe(el));
+        }
+
+        window.onload = () => {
+            animateCounters();
+            fadeInOnScroll();
+        };
+    </script>
+</body>
+</html>
